@@ -1,0 +1,184 @@
+@import "../../../../assets/variables.scss";
+
+:host {
+  display: block;
+  background-color: $principal;
+  color: $text;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.spinner-border {
+  color: $accentPrincipal;
+  margin-top: 10px;
+}
+
+.product-details {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.product-photo {
+  flex: 0 0 300px;
+
+  img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-title {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: $accentPrincipal;
+}
+
+.product-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  color: $text;
+
+  .separator {
+    color: $accentSecond;
+  }
+
+  .discount {
+    color: $accentPrincipal;
+    font-weight: bold;
+  }
+
+  .stock {
+    font-weight: bold;
+  }
+}
+
+.description {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.price-section {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+
+  .original-price {
+    text-decoration: line-through;
+    color: $accentSecond;
+    margin-right: 10px;
+  }
+
+  .current-price {
+    color: $accentPrincipal;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+
+  mat-icon {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.favorite {
+    background-color: $accentPrincipal;
+    color: $principal;
+
+    &:hover {
+      background-color: darken($accentPrincipal, 10%);
+    }
+  }
+
+  &.add-stock,
+  &.remove-stock {
+    background-color: $accentSecond;
+    color: $principal;
+
+    &:hover {
+      background-color: darken($accentSecond, 10%);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: $accentPrincipal;
+  color: $principal;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $accentSecond;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-photo {
+    flex: 0 0 auto;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}

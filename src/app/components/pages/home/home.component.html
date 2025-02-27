@@ -1,1 +1,34 @@
-<p>home works!</p>
+<div class="page-container">
+    <h1>🎨ARTE E INTERIORISMO</h1>
+    <h2 class="text-center">Reutilizamos, Reciclamos, Renovamos, Retapizamos, Reinterpretamos cada pieza</h2>
+    <input type="text" placeholder="Buscar productos" class="search-input" [(ngModel)]="searchTerm" (keyup)="onSearch()">
+    <div class="text-center" *ngIf="isLoading">
+      <div class="spinner-border" role="status"></div>
+      <p>Cargando, por favor espera...</p>
+    </div>
+    <div class="product-grid">
+        <div *ngFor="let product of products" class="product-card" (click)="navigateToProductDetail(product.id)">
+          <img [src]="'data:image/jpeg;base64,' + product.productPhoto" [alt]="product.name" class="product-image">
+          <div class="product-info">
+            <h2 class="product-title">{{ product.name }}</h2>
+            <div class="product-meta">
+              <div class="product-category">{{ product.category.name }}</div>
+              <div class="product-price">
+                <!-- Mostrar solo el precio original si son iguales -->
+                <span *ngIf="product.originalPrice !== product.price" class="original-price">
+                  {{ product.originalPrice | currency:'EUR'  }}
+                </span>
+                <!-- Mostrar el precio actual -->
+                <span class="current-price">
+                  {{ product.price | currency:'EUR' }}
+                </span>
+              </div>
+              <div class="product-stock">Stock: {{ product.stock }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  
+  

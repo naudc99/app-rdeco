@@ -1,0 +1,42 @@
+<div class="text-center" *ngIf="isLoading">
+    <div class="spinner-border" role="status"></div>
+    <p>Cargando, por favor espera...</p>
+  </div>
+  
+  <div class="container" *ngIf="product">
+    <div class="product-details">
+      
+      <div class="product-photo">
+        <img [src]="'data:image/jpeg;base64,' + product.productPhoto" [alt]="product.name" class="product-photo">
+      </div>
+      
+      <div class="product-info">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <div class="product-meta">
+          <span class="category">Categoría: {{ product.category.name }}</span>
+          <span class="separator">|</span>
+          <span *ngIf="product.discount">
+            <span class="discount">Descuento: {{ product.discount.percentage }}%</span>
+            <span class="separator">|</span>
+          </span>
+          <span class="stock">Stock: {{ product.stock }}</span>
+        </div>
+  
+        <p class="description">{{ product.description }}</p>
+  
+        <div class="price-section">
+          <!-- Mostrar el precio original si no es igual al precio actual -->
+          <span *ngIf="product.originalPrice !== product.price" class="original-price">
+            {{ product.originalPrice | currency: 'EUR' }}
+          </span>
+          <!-- Mostrar el precio actual -->
+          <span class="current-price">
+            {{ product.price | currency: 'EUR' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  
+    <a class="back-button" (click)="backToProducts()">Volver al Catálogo</a>
+  </div>
+  

@@ -1,0 +1,40 @@
+<div class="page-container">
+  <div class="form-container">
+    <h2>Añadir Nuevo Descuento</h2>
+    <form [formGroup]="discountForm" (ngSubmit)="onSubmit()">
+      <!-- Campo para el porcentaje -->
+      <div class="form-group">
+        <label for="discount-percentage">Porcentaje</label>
+        <input
+          type="number"
+          id="discount-percentage"
+          formControlName="percentage"
+          class="form-control"
+          required
+          min="0"
+          max="100"
+        />
+      </div>
+
+      <!-- Campo para seleccionar un producto -->
+      <div class="form-group">
+        <label for="discount-product">Producto</label>
+        <select
+          id="discount-product"
+          formControlName="product"
+          class="form-control"
+        >
+          <option *ngFor="let product of products" [ngValue]="product">
+            {{ product.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Botones para cancelar o guardar -->
+      <div class="button-group">
+        <button type="button" class="button cancel" (click)="cancel()">Cancelar</button>
+        <button type="submit" class="button" [disabled]="!discountForm.valid">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

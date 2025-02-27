@@ -1,0 +1,70 @@
+<div class="dialog-overlay">
+    <div class="dialog-container">
+      <h1 class="dialog-title">Editar Producto</h1>
+      <div class="dialog-content">
+        
+        <div class="form-group">
+          <label for="product-name">Nombre del Producto</label>
+          <input
+            type="text"
+            id="product-name"
+            [(ngModel)]="data.product.name"
+            class="input-field"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="product-description">Descripción</label>
+          <textarea
+            id="product-description"
+            [(ngModel)]="data.product.description"
+            class="input-field"
+            rows="4"
+          ></textarea>
+        </div>
+  
+        <div class="form-group">
+          <label for="product-price">Precio</label>
+          <input
+            type="number"
+            id="product-price"
+            [(ngModel)]="data.product.price"
+            class="input-field"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="product-stock">Stock</label>
+          <input
+            type="number"
+            id="product-stock"
+            [(ngModel)]="data.product.stock"
+            class="input-field"
+          />
+        </div>  
+  
+        <div class="form-group">
+          <label for="product-image">Imagen del Producto</label>
+          <input
+            type="file"
+            id="product-image"
+            (change)="onImageSelected($event)"
+            accept="image/*"
+            class="file-input"
+          />
+          <label for="product-image" class="file-label">Seleccionar archivo</label>
+        </div>
+  
+        <div *ngIf="previewImage" class="image-preview">
+          <img [src]="previewImage" alt="Vista previa de la imagen del producto" />
+        </div>
+  
+      </div>
+  
+      <div class="dialog-actions">
+        <button (click)="onNoClick()" class="btn btn-cancel">Cancelar</button>
+        <button (click)="onSave()" class="btn btn-save">Guardar</button>
+      </div>
+    </div>
+  </div>
+  

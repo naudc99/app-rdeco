@@ -1,0 +1,48 @@
+<div class="dashboard-container">
+    <div class="card">
+      <h2>Productos</h2>
+      <div class="toolbar">
+        <button class="button" (click)="addProduct()">Nuevo Producto</button>
+        <input type="text" placeholder="Buscar productos" class="search-input" [(ngModel)]="searchTerm" (keyup)="onSearch()">
+      </div>
+      <div class="table-container">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Nombre</th>
+              <th>Precio Original</th>
+              <th>Precio con descuento</th>
+              <th>Stock</th>
+              <th>Categoría</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                <img [src]="'data:image/jpeg;base64,' + product.productPhoto" [alt]="product.name" class="product-photo">
+              </td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.originalPrice | currency: 'EUR'}}</td>          
+              <td>{{ product.price | currency:'EUR' }}</td>
+              <td>{{ product.stock }}</td>
+              <td>{{ product.category.name }}</td>
+              <td class="action-buttons">
+                <button class="button edit" (click)="openEditDialog(product)">Editar</button>
+                <button class="button delete" (click)="openDeleteDialog(product)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+          
+        </table>
+        <!-- Botones de navegación -->
+        <div class="pagination-controls">
+          <button (click)="onPageChange(page - 1)" [disabled]="page === 0">Anterior</button>
+          <span>Página {{ page + 1 }} de {{ totalPages }}</span>
+          <button (click)="onPageChange(page + 1)" [disabled]="page + 1 === totalPages">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
